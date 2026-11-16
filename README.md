@@ -21,7 +21,13 @@ Names, `WEDDING` timestamp (`2026-12-27T11:30:00+05:30`), event length, and venu
 calendar event. The countdowns, the December 2026 calendar grid, the highlighted 27th and the
 Google Calendar link are all generated from these values.
 
-## Shared Wishes Box (Firebase Firestore, free tier)
+## Wishes Box → WhatsApp
+
+Tapping **Send Wishes** opens WhatsApp with the guest's name and message pre-filled, addressed to
+`+91 90617 53746` (`WHATSAPP_NUMBER` in `script.js`). The guest taps Send in WhatsApp to deliver it.
+The list of wishes on the page only appears if you also configure the optional Firebase backend below.
+
+## Optional: show wishes on the page (Firebase Firestore, free tier)
 
 1. Create a project at https://console.firebase.google.com, then **Build → Firestore Database → Create** (production mode).
 2. **Project settings → General → Your apps → Web app (</>)**; copy `apiKey` and `projectId`.

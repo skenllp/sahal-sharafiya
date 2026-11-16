@@ -7,6 +7,7 @@ var WEDDING = "2026-12-27T11:30:00+05:30";
 var EVENT_HOURS = 3;            // 11:30 AM -> 2:30 PM IST (calendar end time)
 var VENUE_ADDRESS = "Nakshathra Convention Centre, Kadathy, Muvattupuzha";
 var DATE_TEXT = "";
+var WHATSAPP_NUMBER = "919061753746";   // wishes are sent to this WhatsApp number (country code, no + or spaces)
 
 /* ===== SHARED WISHES BOX (Firebase Firestore) =====
    Fill these two values to make wishes visible to every visitor.
@@ -83,7 +84,7 @@ var FIREBASE_PROJECT_ID = "";
   var LK="wishes_local";
   var SHARED=!!(FIREBASE_API_KEY && FIREBASE_PROJECT_ID);
   var FS=SHARED?"https://firestore.googleapis.com/v1/projects/"+encodeURIComponent(FIREBASE_PROJECT_ID)+"/databases/(default)/documents":"";
-  var sending=false, lastSig="", lastAt=0;
+  var lastSig="", lastAt=0;
 
   function setStat(t,err){stat.textContent=t||"";stat.className="wstat"+(err?" err":"")}
   function show(items){ /* textContent only: wishes are never parsed as HTML */
@@ -112,27 +113,23 @@ var FIREBASE_PROJECT_ID = "";
     setInterval(function(){if(!document.hidden)loadShared().catch(function(){})},30000);
   }else{
     note.hidden=false;
-    note.textContent="Demo mode: wishes are saved on this device only and are not shared with other guests.";
-    show(local());
+    note.textContent="Your wishes will open in WhatsApp – just tap Send to deliver them to the family.";
   }
 
   btn.addEventListener("click",function(){
-    if(sending)return;
     var name=clean(nameEl.value,60), msg=clean(msgEl.value,400);
     if(!name){setStat("Please enter your name.",true);nameEl.focus();return}
     if(!msg){setStat("Please write your wishes.",true);msgEl.focus();return}
     var sig=name.toLowerCase()+"|"+msg.toLowerCase(), now=Date.now();
     if(sig===lastSig&&now-lastAt<60000){setStat("This wish was already sent. Thank you!");return}
     var w={name:name,msg:msg,t:now};
-    sending=true;btn.disabled=true;setStat("Sending…");
-    var job;
-    if(SHARED){job=saveShared(w).then(function(){return loadShared().catch(function(){})})}
-    else{job=new Promise(function(res,rej){var a=local();a.unshift(w);try{localStorage.setItem(LK,JSON.stringify(a.slice(0,100)))}catch(e){return rej(e)}show(a);res()})}
-    job.then(function(){
-      lastSig=sig;lastAt=Date.now();msgEl.value="";
-      setStat(SHARED?"Thank you! Your wishes have been sent.":"Saved on this device (demo mode).");
-    }).catch(function(){
-      setStat("Sorry, your wishes couldn't be sent. Please try again.",true);
-    }).then(function(){sending=false;btn.disabled=false});
+    var text="Wishes from "+name+":\n"+msg+"\n\n(via the "+GROOM_SHORT+" & "+BRIDE_SHORT+" Nikkah invitation)";
+    var url="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(text);
+    lastSig=sig;lastAt=now;msgEl.value="";
+    if(SHARED){saveShared(w).then(function(){return loadShared()}).catch(function(){})}
+    /* opened synchronously inside the tap so mobile browsers don't block it */
+    var win=window.open(url,"_blank");
+    if(!win)window.location.href=url;
+    setStat("Opening WhatsApp… tap Send there to deliver your wishes.");
   });
 })();
