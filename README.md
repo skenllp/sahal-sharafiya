@@ -6,7 +6,7 @@ Static site (HTML + CSS + vanilla JS). No build step. Deploy the folder as-is to
 
 1. **Set the domain** (WhatsApp/Open Graph previews need absolute URLs).
    After deploying, run `./set-domain.sh https://your-real-domain.com` or search-and-replace
-   `https://YOUR-DOMAIN.vercel.app` in `index.html`, then redeploy.
+   the domain in `index.html` (currently `https://sahal-sharafiya.vercel.app`) if it changes, then redeploy.
 2. **Wishes Box** – see below. Without Firebase it runs in *local demo mode* (wishes are
    visible only on the device that wrote them, and the page says so).
 3. **Venue link** – the Directions links use a Google Maps search for
