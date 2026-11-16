@@ -135,6 +135,9 @@ h2.script{font-size:2rem;line-height:1.25}
 footer h2{font-size:2.3rem}
 footer h2.fpar{font-size:clamp(1.2rem,6vw,2rem);white-space:nowrap;margin:8px 0 4px;overflow-wrap:anywhere}
 footer h2.fpar2{margin:4px 0 14px}
+footer .fgp{max-width:340px;margin:0 0 20px}
+footer .fgp p{font-size:1.05rem;line-height:1.5;color:var(--beige);margin:3px 0;text-wrap:balance}
+footer .fgp .fgl{font-style:italic;color:var(--gold);font-size:.95rem;letter-spacing:.08em}
 footer .fnames{max-width:340px;font-size:1.1rem;line-height:1.5;color:var(--beige);margin:0 0 26px;text-wrap:balance}
 /* quranic verse (under couple photo) */
 .quote{max-width:420px;margin:0 auto 30px;display:flex;flex-direction:column;align-items:center}
