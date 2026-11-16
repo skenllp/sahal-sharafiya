@@ -135,12 +135,11 @@ h2.script{font-size:2rem;line-height:1.25}
 footer h2{font-size:2.3rem}
 footer h2.fpar{font-size:clamp(1.2rem,6vw,2rem);white-space:nowrap;margin:8px 0 4px;overflow-wrap:anywhere}
 footer h2.fpar2{margin:4px 0 26px}
-/* quranic verse */
-footer .fverse{max-width:420px;margin-top:38px;display:flex;flex-direction:column;align-items:center}
-footer .fvl{width:60px;height:1px;background:var(--gold);margin-bottom:26px}
-footer .fverse .ar{font-family:'Amiri','Scheherazade New','Noto Naskh Arabic','Traditional Arabic',serif;font-size:1.75rem;line-height:2.15;direction:rtl;unicode-bidi:isolate;text-align:center;color:var(--ivory);font-style:normal;font-weight:400;word-spacing:.05em;text-wrap:balance}
-footer .fverse .en{margin-top:16px;font-style:italic;font-size:1.08rem;line-height:1.6;color:var(--beige)}
-footer .fverse .ref{margin-top:16px;color:var(--gold);font-size:.78rem}
+/* quranic verse (under couple photo) */
+.quote{max-width:420px;margin:0 auto 30px;display:flex;flex-direction:column;align-items:center}
+.quote .ar{font-family:'Amiri','Scheherazade New','Noto Naskh Arabic','Traditional Arabic',serif;font-size:1.65rem;line-height:2.15;direction:rtl;unicode-bidi:isolate;text-align:center;font-style:normal;font-weight:400;word-spacing:.05em;text-wrap:balance}
+.quote .en{margin-top:12px;font-style:italic;font-size:1.08rem;line-height:1.6}
+.quote .ref{margin-top:14px;color:var(--gold);font-size:.78rem}
 .cal h4{font-size:1.55rem}
 .fbox h4{font-size:1.7rem}
 .info h3,.wcard h3{font-family:var(--head);font-style:normal;font-weight:600;letter-spacing:.14em}
